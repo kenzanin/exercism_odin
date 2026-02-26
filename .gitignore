@@ -16,3 +16,6 @@
 
 # OS
 Thumbs.db
+
+debug_build
+*.bin
