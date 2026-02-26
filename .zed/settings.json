@@ -1,0 +1,20 @@
+{
+  "lsp": {
+    "ols": {
+      "initialization_options": {
+        "enable_semantic_tokens": true,
+      },
+    },
+    "harper-ls": {},
+  },
+  "languages": {
+    "Markdown": {
+      "language_servers": ["marksman", "markdownlint"],
+      "format_on_save": "on",
+      "formatter": "language_server",
+    },
+  },
+  "inlay_hints": {
+    "enabled": true,
+  },
+}
