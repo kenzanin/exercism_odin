@@ -9,7 +9,7 @@
   },
   "languages": {
     "Markdown": {
-      "language_servers": ["marksman", "markdownlint"],
+      "language_servers": ["marksman", "markdownlint", "herper"],
       "format_on_save": "on",
       "formatter": "language_server",
     },
