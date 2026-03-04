@@ -13,6 +13,11 @@
       "format_on_save": "on",
       "formatter": "language_server",
     },
+    "Odin": {
+      "language_servers": ["ols", "herper", "..."],
+      "format_on_save": "on",
+      "formatter": "language_server",
+    },
   },
   "inlay_hints": {
     "enabled": true,

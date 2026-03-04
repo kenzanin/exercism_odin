@@ -11,7 +11,6 @@
 .DS_Store
 *.swp
 *~
-.vscode/
 .idea/
 
 # OS
@@ -19,3 +18,4 @@ Thumbs.db
 
 debug_build
 *.bin
+logs

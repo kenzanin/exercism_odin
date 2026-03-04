@@ -1,7 +1,7 @@
 package yacht
 
-import "core:slice/heap"
 Category :: enum {
+	Zero,
 	Ones,
 	Twos,
 	Threes,
@@ -18,16 +18,6 @@ Category :: enum {
 
 Roll :: [5]int
 
-count :: proc(src: Roll, target: int) -> int {
-	count := 0
-	for i in src {
-		if i == target {
-			count += 1
-		}
-	}
-	return count
-}
-
 score :: proc(dice: Roll, category: Category) -> int {
 	result := 0
 	to_map := proc(dice: Roll) -> map[int]int {
@@ -38,22 +28,13 @@ score :: proc(dice: Roll, category: Category) -> int {
 		return result
 	}
 
+	tmp01 := to_map(dice)
+	defer delete(tmp01)
+
 	switch category {
-	case .Ones:
-		result = count(dice, 1)
-	case .Twos:
-		result = 2 * count(dice, 2)
-	case .Threes:
-		result = 3 * count(dice, 3)
-	case .Fours:
-		result = 4 * count(dice, 4)
-	case .Fives:
-		result = 5 * count(dice, 5)
-	case .Sixes:
-		result = 6 * count(dice, 6)
+	case .Zero, .Ones, .Twos, .Threes, .Fours, .Fives, .Sixes:
+		return tmp01[int(category)] * int(category)
 	case .Full_House:
-		tmp01 := to_map(dice)
-		defer delete(tmp01)
 		tmp02 := 0
 		tmp03 := 0
 		for k, v in tmp01 {
@@ -68,8 +49,6 @@ score :: proc(dice: Roll, category: Category) -> int {
 			result = (tmp02 * 3) + (tmp03 * 2)
 		}
 	case .Four_Of_A_Kind:
-		tmp01 := to_map(dice)
-		defer delete(tmp01)
 		for k, v in tmp01 {
 			if v >= 4 {
 				result = 4 * k
@@ -77,22 +56,16 @@ score :: proc(dice: Roll, category: Category) -> int {
 			}
 		}
 	case .Little_Straight:
-		tmp01 := to_map(dice)
-		defer delete(tmp01)
 		if tmp01[1] & tmp01[2] & tmp01[3] & tmp01[4] & tmp01[5] == 1 {
 			return 30
 		}
 	case .Big_Straight:
-		tmp01 := to_map(dice)
-		defer delete(tmp01)
 		if tmp01[2] & tmp01[3] & tmp01[4] & tmp01[5] & tmp01[6] == 1 {
 			return 30
 		}
 	case .Choice:
 		return dice[0] + dice[1] + dice[2] + dice[3] + dice[4]
 	case .Yacht:
-		tmp01 := to_map(dice)
-		defer delete(tmp01)
 		if tmp01[dice[0]] == 5 {
 			return 50
 		}
