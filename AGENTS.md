@@ -24,19 +24,6 @@
 
 - `arch-ops-server_*` - Various Arch Linux package/system tools
 
-## Guidelines for Odin Exercises
-
-1. **DO NOT write directly to solution files** (e.g., `hello_world.odin`)
-2. **Generate pseudocode** that is close to Odin language syntax
-3. Use `.md` files or explain verbally instead of directly modifying solution files
-4. Help user understand Odin concepts:
-   - `proc` for procedures/functions
-   - `->` for return types
-   - `package` declaration
-   - `import "core:..."` for core imports
-   - `^` for pointers
-   - `@(test)` for test procedures
-
 ## Running Tests
 
 To test your Odin solution:
